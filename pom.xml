@@ -22,6 +22,12 @@
 		<maven.compiler.target>11</maven.compiler.target>
 		<mainClass>geolocator.GeoLocator</mainClass>
 	</properties>
+	<distributionManagement>
+		<site>
+			<id>shrek</id>
+			<url>scp://@shrek.unideb.hu:2222/home/omaimajilani/public_html/${project.artifactId}</url>
+		</site>
+	</distributionManagement>
 	<dependencies>
 
 		<dependency>
@@ -53,6 +59,18 @@
 	</dependencies>
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.8.2</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.wagon</groupId>
+						<artifactId>wagon-ssh</artifactId>
+						<version>3.3.4</version>
+					</dependency>
+				</dependencies>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
@@ -153,11 +171,6 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>3.8.2</version>
 			</plugin>
 		</plugins>
 	</build>
